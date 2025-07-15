@@ -1,93 +1,43 @@
-# study
+# ☕ Java OOP & SOLID 스터디 - study 프로젝트
 
+이 프로젝트는 **객체지향 설계 원칙(OOP & SOLID)** 을 중심으로,  
+Java 기반 예제를 실습하며 개념을 적용해보는 스터디용 저장소입니다.
 
+---
 
-## Getting started
+## 📚 학습 목표
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+- 객체지향 4대 특성 (추상화, 캡슐화, 상속, 다형성)
+- SOLID 원칙 (SRP, OCP, LSP, ISP, DIP)
+- 추상 클래스 vs 인터페이스 이해
+- 결합도 낮은 설계 및 확장 가능한 구조 구성법
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+---
 
-## Add your files
+## 🧩 예제 구성
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+현재는 다음과 같은 예제를 포함하고 있으며, 추후 과제가 추가될 수 있습니다:
 
-```
-cd existing_repo
-git remote add origin https://git.rallyz.co.kr/wjc/study.git
-git branch -M main
-git push -uf origin main
-```
+- `ordersystem`: 상품 주문 시스템 예제
+    - 상품(Product), 결제(Payment), 주문(Order) 도메인을 다룸
+    - SOLID 원칙과 OOP 개념이 전반적으로 적용됨
 
-## Integrate with your tools
+---
 
-- [ ] [Set up project integrations](https://git.rallyz.co.kr/wjc/study/-/settings/integrations)
+## 🛠 참여 방식
 
-## Collaborate with your team
+1. `main` 브랜치 기준으로 **개인 브랜치 생성**
+   ```bash
+   git checkout -b feat/이름
+   
+--- 
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+## 🧠 스터디 풀이 가이드
 
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+- 클래스 상단에 주어진 `/** ✅ 미션: ... */` 주석을 기반으로 구현합니다.
+- 요구사항 외에도 **추상화 / 확장성 / 테스트 가능성** 등을 염두에 두고 구조를 설계해보세요.
+- 정답보다도 **SRP / OCP / DIP** 등을 고려한 구조와 **고민의 흔적**을 중점으로 리뷰합니다.
+- 필요 시 `@Override`, `@FunctionalInterface`, `Logger`, `Enum`, `Stream` 사용도 자유롭게 가능
+- **AI 도구(GPT 등)는 학습 참고용으로 사용 가능합니다.**  
+    단, **코드 전체를 대신 작성하거나 그대로 복붙하는 방식의 사용은 지양합니다.**  
+    본인의 고민과 설계가 반드시 반영되어야 합니다.
