@@ -10,5 +10,7 @@ import com.example.study.ordersystem.payment.PaymentMethod;
  */
 public class OrderProcessor {
     public void process(Order order, PaymentMethod paymentMethod) {
+        int totalAmount = order.getTotalAmount();
+        paymentMethod.pay(totalAmount);
     }
 }
