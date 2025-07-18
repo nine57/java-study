@@ -11,5 +11,23 @@ package com.example.study.ordersystem.product;
  * - 캡슐화된 상태값(구독 기간 등)을 활용한 동작 구성
  * - 다형성으로 주문 처리 로직에 통합 가능해야 함
  */
-public class SubscriptionProduct {
+public class SubscriptionProduct extends AbstractProduct {
+    private final int subscriptionMonths;
+
+    public SubscriptionProduct(String name, int price, int subscriptionMonths) {
+        super(name, price);
+        if (subscriptionMonths <= 0) {
+            throw new IllegalArgumentException("1 이상의 구독 개월 수 필요");
+        }
+        this.subscriptionMonths = subscriptionMonths;
+    }
+
+    public int getSubscriptionMonths() {
+        return subscriptionMonths;
+    }
+
+    @Override
+    public int getPrice() {
+        return super.getPrice() * subscriptionMonths;
+    }
 }

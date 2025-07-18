@@ -7,4 +7,20 @@ package com.example.study.ordersystem.product;
  * - 추상 클래스와 인터페이스를 함께 사용하는 구조 연습
  */
 public abstract class AbstractProduct implements Product {
+    private final String name;
+    private final int price;
+
+    public AbstractProduct(String name, int price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+    @Override
+    public int getPrice() {
+        return price;
+    }
 }
