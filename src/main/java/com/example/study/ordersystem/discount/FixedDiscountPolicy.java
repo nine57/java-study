@@ -1,6 +1,6 @@
 package com.example.study.ordersystem.discount;
 
-public class FixedDiscountPolicy implements discountPolicy{
+public class FixedDiscountPolicy implements DiscountPolicy {
     private final int discountAmount;
 
     public FixedDiscountPolicy(int discountAmount) {
