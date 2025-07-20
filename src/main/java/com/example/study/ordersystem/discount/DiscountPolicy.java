@@ -1,5 +1,5 @@
 package com.example.study.ordersystem.discount;
 
-public interface discountPolicy {
+public interface DiscountPolicy {
     int applyDiscount(int price);
 }

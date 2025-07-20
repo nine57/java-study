@@ -1,6 +1,6 @@
 package com.example.study.ordersystem.product;
 
-import com.example.study.ordersystem.discount.discountPolicy;
+import com.example.study.ordersystem.discount.DiscountPolicy;
 
 /**
  * ✅ 미션: AbstractProduct를 상속받아 할인 로직 적용
@@ -12,16 +12,20 @@ import com.example.study.ordersystem.discount.discountPolicy;
  * - 다형성으로 주문 처리 로직에 통합 가능해야 함
  */
 public class DiscountedProduct extends AbstractProduct {
-    private final discountPolicy discountPolicy;
+    private final DiscountPolicy[] discountPolicies;
 
-    public DiscountedProduct(String name, int price, discountPolicy discountPolicy) {
+    public DiscountedProduct(String name, int price, DiscountPolicy[] discountPolicies) {
         super(name, price);
-        this.discountPolicy = discountPolicy;
+        this.discountPolicies = discountPolicies;
     }
 
     @Override
     public int getPrice() {
-        return discountPolicy.applyDiscount(super.getPrice());
+        int price = super.getPrice();
+        for (DiscountPolicy discountPolicy : discountPolicies) {
+            price = discountPolicy.applyDiscount(price);
+        }
+        return price;
     }
 
 }
