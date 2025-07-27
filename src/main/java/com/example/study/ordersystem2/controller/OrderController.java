@@ -1,7 +1,8 @@
 package com.example.study.ordersystem2.controller;
 
 import com.example.study.ordersystem2.model.OrderDto;
-import com.example.study.ordersystem2.service.OrderProcessor;
+import com.example.study.ordersystem2.service.OrderProcessorV2;
+import com.example.study.ordersystem2.external.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,17 +26,13 @@ public class OrderController {
      * 	- 가이드 문서
      * 	<p>https://wjcompass.atlassian.net/wiki/spaces/WLDA/pages/503742489/OrderProcessor</p>
      */
-//    private final List<OrderProcessor> processors;
-//
-//    public OrderController(List<OrderProcessor> processors) {
-//        this.processors = processors;
-//    }
-
-    private final OrderProcessor orderProcessor;
+    private final List<OrderProcessorV2> processors;
+    private final Logger logger;
 
     @Autowired
-    public OrderController(OrderProcessor orderProcessor) {
-        this.orderProcessor = orderProcessor;
+    public OrderController(List<OrderProcessorV2> processors, Logger logger) {
+        this.processors = processors;
+        this.logger = logger;
     }
 
     @GetMapping("/ping")
@@ -45,6 +42,17 @@ public class OrderController {
 
     @PostMapping
     public String processOrder(@RequestBody OrderDto dto) {
-        return orderProcessor.process(dto);
+        logger.logOrderRequest(dto.getType(), dto.getAmount(), dto.getUserEmail());
+        
+        try {
+            return processors.stream()
+                .filter(p -> p.support(dto.getType()))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("지원하지 않는 주문 타입"))
+                .process(dto);
+        } catch (IllegalArgumentException e) {
+            logger.logError("알 수 없는 상품 유형: " + dto.getType());
+            return e.getMessage();
+        }
     }
 }
