@@ -29,4 +29,23 @@ public class User {
     private String password;
     @Column(name = "NAME")
     private String name;
+
+    // 업데이트를 위한 메서드들
+    public void updateEmail(String email) {
+        this.email = email;
+    }
+
+    public void updatePassword(String password) {
+        this.password = password;
+    }
+
+    public void updateName(String name) {
+        this.name = name;
+    }
+
+    public void updateAll(String email, String password, String name) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+    }
 }
