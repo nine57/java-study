@@ -3,6 +3,7 @@ package com.example.study.user.controller;
 import com.example.study.user.model.dto.UserDto;
 import com.example.study.user.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,8 +28,9 @@ public class UserController {
     private final UserServiceImpl userServiceImpl;
 
     @GetMapping("/{id}")
-    public UserDto getUser(@PathVariable Long id) {
-        return userServiceImpl.getUser(id);
+    public ResponseEntity<UserDto> getUser(@PathVariable Long id) {
+        UserDto user = userServiceImpl.getUser(id);
+        return ResponseEntity.ok(user);
     }
 
     /**
@@ -37,8 +39,9 @@ public class UserController {
      * - 저장된 회원의 ID를 반환할 것
      */
     @PostMapping
-    public Long createUser(@RequestBody UserDto dto) {
-        return null;
+    public ResponseEntity<Long> createUser(@RequestBody UserDto dto) {
+        Long userId = userServiceImpl.createUser(dto);
+        return ResponseEntity.ok(userId);
     }
 
     /**
@@ -46,8 +49,9 @@ public class UserController {
      * - 저장된 회원 정보를 전체 반환할 것
      */
     @GetMapping
-    public List<UserDto> getAllUsers() {
-        return null;
+    public ResponseEntity<List<UserDto>> getAllUsers() {
+        List<UserDto> users = userServiceImpl.getAllUsers();
+        return ResponseEntity.ok(users);
     }
 
     /**
@@ -57,7 +61,9 @@ public class UserController {
      * - 응답값은 알아서 작업
      */
     @PutMapping("/{id}")
-    public void updateUser(@PathVariable Long id, @RequestBody UserDto dto) {
+    public ResponseEntity<Void> updateUser(@PathVariable Long id, @RequestBody UserDto dto) {
+        userServiceImpl.updateUser(id, dto);
+        return ResponseEntity.ok().build();
     }
 
     /**
@@ -67,7 +73,9 @@ public class UserController {
      * - 응답값은 알아서 작업
      */
     @PatchMapping("/{id}")
-    public void patchUserName(@PathVariable Long id, @RequestBody String name) {
+    public ResponseEntity<Void> patchUserName(@PathVariable Long id, @RequestBody String name) {
+        userServiceImpl.patchUserName(id, name);
+        return ResponseEntity.ok().build();
     }
 
     /**
@@ -77,6 +85,8 @@ public class UserController {
      * - 응답값은 알아서 작업
      */
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        userServiceImpl.deleteUser(id);
+        return ResponseEntity.ok().build();
     }
 }

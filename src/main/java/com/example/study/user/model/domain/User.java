@@ -23,10 +23,23 @@ public class User {
     @Column(name = "USER_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "EMAIL")
     private String email;
+
     @Column(name = "PASSWORD")
     private String password;
+
     @Column(name = "NAME")
     private String name;
+
+    public void updateAll(String email, String password, String name) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+    }
+
+    public void updateName(String name) {
+        this.name = name;
+    }
 }
