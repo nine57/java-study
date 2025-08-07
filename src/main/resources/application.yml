@@ -4,16 +4,41 @@ server:
 spring:
   application:
     name: study
+  # === H2 설정 ===
   datasource:
     url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false
     driver-class-name: org.h2.Driver
     username: sa
     password:
+  # === H2 설정 ===
+  # === MySQL 설정 ===
+#  datasource:
+#    url: jdbc:mysql://101.79.11.170:3306/study
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    username: root
+#    password: ubion$admin1
+  # === MySQL 설정 ===
   jpa:
+    # === H2 설정 ===
     database-platform: org.hibernate.dialect.H2Dialect
+    # === H2 설정 ===
+    # === MySQL 설정 ===
+#    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    # === MySQL 설정 ===
+    show-sql: true
+    open-in-view: false
     hibernate:
       ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
   h2:
     console:
       enabled: true
       path: /h2-console
+
+logging:
+  level:
+    log4jdbc.log4j2: WARN
+    org.hibernate.SQL: debug         # SQL 출력
+    org.hibernate.type.descriptor.sql: trace  # 바인딩된 파라미터 출력
