@@ -1,10 +1,10 @@
-package com.example.study.order.service.impl;
+package com.example.study.user.service.impl;
 
-import com.example.study.order.model.request.CreateUserRequest;
-import com.example.study.order.model.domain.User;
-import com.example.study.order.model.dto.UserDto;
-import com.example.study.order.repository.UserRepository;
-import com.example.study.order.service.UserService;
+import com.example.study.user.model.domain.User;
+import com.example.study.user.model.dto.UserDto;
+import com.example.study.user.model.request.CreateUserRequest;
+import com.example.study.user.repository.UserRepository;
+import com.example.study.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

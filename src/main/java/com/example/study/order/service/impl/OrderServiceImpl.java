@@ -1,17 +1,17 @@
 package com.example.study.order.service.impl;
 
-import com.example.study.order.model.constant.ProductType;
 import com.example.study.order.model.request.CreateOrderRequest;
 import com.example.study.order.model.domain.Order;
 import com.example.study.order.model.domain.OrderItem;
-import com.example.study.order.model.domain.Product;
-import com.example.study.order.model.domain.User;
 import com.example.study.order.model.dto.OrderDto;
 import com.example.study.order.repository.OrderRepository;
-import com.example.study.order.repository.ProductRepository;
-import com.example.study.order.repository.UserRepository;
 import com.example.study.order.service.OrderService;
-import com.example.study.order.service.ProductService;
+import com.example.study.product.model.constant.ProductType;
+import com.example.study.product.model.domain.Product;
+import com.example.study.product.repository.ProductRepository;
+import com.example.study.product.service.ProductService;
+import com.example.study.user.model.domain.User;
+import com.example.study.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -29,7 +29,14 @@ public class OrderServiceImpl implements OrderService {
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
     private final List<ProductService> productServices;
-    
+
+    private ProductService findProductService(ProductType productType) {
+        return productServices.stream()
+                .filter(service -> service.supports(productType))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("지원하지 않는 상품 타입입니다: " + productType));
+    }
+
     @Override
     @Transactional
     public Long createOrder(CreateOrderRequest request) {
@@ -52,11 +59,6 @@ public class OrderServiceImpl implements OrderService {
             List<CreateOrderRequest.OrderItemRequest> items = entry.getValue();
             
             log.info("{} 타입 상품 처리 시작: {}개", productType, items.size());
-            ProductService productService = findProductService(productType);
-            productService.validateOrder(items);
-            productService.preProcessOrder(items);
-            
-
             for (CreateOrderRequest.OrderItemRequest itemRequest : items) {
                 Product product = productRepository.findById(itemRequest.getProductId())
                         .orElseThrow(() -> new IllegalArgumentException("상품을 찾을 수 없습니다. ID: " + itemRequest.getProductId()));
@@ -67,7 +69,6 @@ public class OrderServiceImpl implements OrderService {
                 log.info("{} 타입 상품 주문: {} ({}), 수량: {}, 가격: {}", 
                     productType, product.getName(), product.getProductType(), itemRequest.getQuantity(), product.getPrice());
             }
-            productService.postProcessOrder(items);
         }
         
         Order savedOrder = orderRepository.save(order);
@@ -75,13 +76,6 @@ public class OrderServiceImpl implements OrderService {
             savedOrder.getId(), productTypeGroups.size(), request.getOrderItems().size());
         
         return savedOrder.getId();
-    }
-
-    private ProductService findProductService(ProductType productType) {
-        return productServices.stream()
-                .filter(service -> service.supports(productType))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("지원하지 않는 상품 타입입니다: " + productType));
     }
     
     @Override
@@ -95,7 +89,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional(readOnly = true)
     public List<OrderDto> getOrderHistory(Long userId) {
-        List<Order> orders = orderRepository.findByUser_Id(userId);
+        List<Order> orders = orderRepository.findByUserId(userId);
         return orders.stream()
                 .map(OrderDto::from)
                 .collect(Collectors.toList());

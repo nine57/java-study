@@ -1,6 +1,7 @@
-package com.example.study.order.model.domain;
+package com.example.study.user.model.domain;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,7 +21,8 @@ public class User {
     
     @Column(nullable = false, unique = true)
     private String email;
-    
+
+    @Builder
     public User(String name, String email) {
         this.name = name;
         this.email = email;

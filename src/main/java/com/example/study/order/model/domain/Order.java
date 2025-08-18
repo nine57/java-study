@@ -1,7 +1,9 @@
 package com.example.study.order.model.domain;
 
 import com.example.study.order.model.constant.OrderStatus;
+import com.example.study.user.model.domain.User;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -24,7 +26,7 @@ public class Order {
     private Long id;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "userId", nullable = false)
     private User user;
     
     @Enumerated(EnumType.STRING)
@@ -33,6 +35,7 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
     
+    @Builder
     public Order(User user) {
         this.user = user;
         this.status = OrderStatus.ORDERED;

@@ -1,6 +1,6 @@
-package com.example.study.order.model.dto;
+package com.example.study.user.model.dto;
 
-import com.example.study.order.model.domain.User;
+import com.example.study.user.model.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,7 +1,7 @@
-package com.example.study.order.model.dto;
+package com.example.study.product.model.dto;
 
-import com.example.study.order.model.constant.ProductType;
-import com.example.study.order.model.domain.Product;
+import com.example.study.product.model.constant.ProductType;
+import com.example.study.product.model.domain.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

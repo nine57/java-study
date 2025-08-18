@@ -1,12 +1,11 @@
-package com.example.study.order.service.impl;
+package com.example.study.product.service.impl;
 
-import com.example.study.order.model.constant.ProductType;
-import com.example.study.order.model.request.CreateOrderRequest;
-import com.example.study.order.model.request.CreateProductRequest;
-import com.example.study.order.model.domain.Product;
-import com.example.study.order.model.dto.ProductDto;
-import com.example.study.order.repository.ProductRepository;
-import com.example.study.order.service.ProductService;
+import com.example.study.product.model.constant.ProductType;
+import com.example.study.product.model.domain.Product;
+import com.example.study.product.model.dto.ProductDto;
+import com.example.study.product.model.request.CreateProductRequest;
+import com.example.study.product.repository.ProductRepository;
+import com.example.study.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -51,27 +50,10 @@ public class BookServiceImpl implements ProductService {
     @Override
     @Transactional(readOnly = true)
     public List<ProductDto> getAllProducts() {
-        List<Product> products = productRepository.findByProductType(ProductType.BOOK);
+        List<Product> products = productRepository.findAll();
         return products.stream()
                 .map(ProductDto::from)
                 .collect(Collectors.toList());
     }
-    
-    @Override
-    public void validateOrder(List<CreateOrderRequest.OrderItemRequest> items) {
-        int totalQuantity = items.stream()
-                .mapToInt(CreateOrderRequest.OrderItemRequest::getQuantity)
-                .sum();
-        log.info("도서 주문 검증 통과: 총 {}권", totalQuantity);
-    }
-    
-    @Override
-    public void preProcessOrder(List<CreateOrderRequest.OrderItemRequest> items) {
-        log.info("도서 주문 전처리 시작: {}개 상품", items.size());
-    }
-    
-    @Override
-    public void postProcessOrder(List<CreateOrderRequest.OrderItemRequest> items) {
-        log.info("도서 주문 후처리 시작: {}개 상품", items.size());
-    }
+
 }

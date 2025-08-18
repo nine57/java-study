@@ -1,6 +1,7 @@
-package com.example.study.order.model.domain;
+package com.example.study.product.model.domain;
 
-import com.example.study.order.model.constant.ProductType;
+import com.example.study.product.model.constant.ProductType;
+import com.example.study.order.model.domain.OrderItem;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,12 +31,12 @@ public class Product {
     
     @Enumerated(EnumType.STRING)
     private ProductType productType;
-    
+
     @OneToMany(mappedBy = "product")
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    public Product(Long id, String name, Integer price, Integer stockQuantity, ProductType productType) {
-        this.id = id;
+    @Builder
+    public Product(String name, Integer price, Integer stockQuantity, ProductType productType) {
         this.name = name;
         this.price = price;
         this.stockQuantity = stockQuantity;

@@ -1,9 +1,9 @@
-package com.example.study.order.controller;
+package com.example.study.user.controller;
 
 import com.example.study.common.model.GlobalResponse;
-import com.example.study.order.model.request.CreateUserRequest;
-import com.example.study.order.model.dto.UserDto;
-import com.example.study.order.service.UserService;
+import com.example.study.user.model.dto.UserDto;
+import com.example.study.user.model.request.CreateUserRequest;
+import com.example.study.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

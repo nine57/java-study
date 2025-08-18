@@ -1,4 +1,4 @@
-package com.example.study.order.model.constant;
+package com.example.study.product.model.constant;
 
 public enum ProductType {
     BOOK, FOOD, ELECTRONICS

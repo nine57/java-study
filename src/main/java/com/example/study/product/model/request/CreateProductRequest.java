@@ -1,6 +1,6 @@
-package com.example.study.order.model.request;
+package com.example.study.product.model.request;
 
-import com.example.study.order.model.constant.ProductType;
+import com.example.study.product.model.constant.ProductType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
